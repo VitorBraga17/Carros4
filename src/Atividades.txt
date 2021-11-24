@@ -1,0 +1,4 @@
+Get -> list{nome_da_classe} , find{nome_da_classe}ById;
+Post -> create{nome_da_classe}
+Update - > update{nome_da_classe}
+Delete -> delete{nome_da_classe}
