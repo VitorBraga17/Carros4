@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CarroService {
-    List<Carro> listCarros();
-    Optional<Carro> findCarroById(Long id);
+    List<CarroDTO> listCarros();
+    CarroDTO getCarroById(Long id);
     Carro createCarro(CarroDTO carroDTO);
     Carro updateCarro(CarroDTO carroDTO,Long id);
     Carro deleteCarro(Long id);
-    Carro park(Long id);
-    Carro depart(Long id);
+    Carro entradaCarro(Long id);
+    Carro saidaCarro(Long id);
 }

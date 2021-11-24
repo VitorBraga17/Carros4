@@ -20,13 +20,13 @@ public class CarroController {
 
     @GetMapping("/listCarros")
     public ResponseEntity listCarros() {
-        List<Carro> carro = _carroService.listCarros();
+        List<CarroDTO> carro = _carroService.listCarros();
         return ResponseEntity.ok(carro);
     }
 
-    @GetMapping("/findCarroById")
+    @GetMapping("/getCarroById")
     public ResponseEntity findCarroById(@RequestParam Long id) {
-        Optional<Carro> carro = _carroService.findCarroById(id);
+        CarroDTO carro = _carroService.getCarroById(id);
 
         try {
             return ResponseEntity.ok(carro);
@@ -67,7 +67,7 @@ public class CarroController {
 
     @PutMapping("/park")
     public ResponseEntity park(@RequestParam Long id){
-        Carro carro = _carroService.park(id);
+        Carro carro = _carroService.entradaCarro(id);
         try {
             return ResponseEntity.ok("The car " + carro.getModelo() + " parked successfully.");
         }catch (Exception ex){
@@ -77,7 +77,7 @@ public class CarroController {
 
     @PutMapping("/depart")
     public ResponseEntity depart(@RequestParam Long id) {
-        Carro carro = _carroService.depart(id);
+        Carro carro = _carroService.saidaCarro(id);
         try {
             return ResponseEntity.ok("The car " + carro.getModelo() + " departed successfully.");
         } catch (Exception ex) {

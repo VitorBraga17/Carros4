@@ -24,7 +24,7 @@ public class Carro {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "carro",fetch = FetchType.EAGER)
-    private List<Registro> registros;
+    private List<EntradaSaida> registros;
 
 
     public Carro(){}

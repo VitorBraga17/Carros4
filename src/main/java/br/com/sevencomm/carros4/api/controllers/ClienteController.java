@@ -21,13 +21,13 @@ public class ClienteController {
 
     @GetMapping("/listClientes")
     public ResponseEntity listClientes() {
-        List<Cliente> clientes = _clienteService.listClientes();
+        List<ClienteDTO> clientes = _clienteService.listClientes();
         return ResponseEntity.ok(clientes);
     }
 
-    @GetMapping("/findClienteById")
+    @GetMapping("/getClienteById")
     public ResponseEntity findClienteById(Long id) {
-        Cliente cliente = _clienteService.findClienteById(id);
+        ClienteDTO cliente = _clienteService.getClienteById(id);
         try {
             return ResponseEntity.ok(cliente);
         }catch (Exception ex){

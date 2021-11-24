@@ -12,17 +12,14 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String nome;
+    String email;
+    String telefone;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     private List<Carro> carros;
 
     public Cliente(){}
-
-    public Cliente(Long id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
 
     public Long getId() {
         return id;
@@ -40,6 +37,22 @@ public class Cliente {
         this.nome = nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
     public List<Carro> getCarros() {
         return carros;
     }
@@ -47,4 +60,5 @@ public class Cliente {
     public void setCarros(List<Carro> carros) {
         this.carros = carros;
     }
+
 }

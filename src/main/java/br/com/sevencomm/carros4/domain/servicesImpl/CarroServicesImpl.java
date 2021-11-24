@@ -8,6 +8,7 @@ import br.com.sevencomm.carros4.domain.models.Cliente;
 import br.com.sevencomm.carros4.domain.services.CarroService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,16 +23,27 @@ public class CarroServicesImpl implements CarroService {
         _clienteRepository = clienteRepository;
     }
 
-    public List<Carro> listCarros() {
-        return _carroRepository.findAll();
+    public List<CarroDTO> listCarros() {
+        List<Carro> carros = _carroRepository.findAll();
+        List<CarroDTO> carrosDTO = new ArrayList<>();
+
+        //carrosDTO = carros.stream().map(CarroDTO::toDTO).collect(Collectors.toList());
+        for (Carro c : carros) {
+            CarroDTO cDTO = CarroDTO.toDTO(c);
+            carrosDTO.add(cDTO);
+        }
+
+        return carrosDTO;
     }
 
-    public Optional<Carro> findCarroById(Long id) {
+    public CarroDTO getCarroById(Long id) {
         Optional<Carro> carro = _carroRepository.findById(id);
-        if(carro.isPresent())
-            return carro;
-        else
+        if(carro.isPresent()){
+            CarroDTO carroDTO = CarroDTO.toDTO(carro.get());
+            return carroDTO;
+        } else {
             throw new IllegalArgumentException("Carro Not Found!");
+        }
     }
 
     public Carro createCarro(CarroDTO carroDTO) {
@@ -83,7 +95,7 @@ public class CarroServicesImpl implements CarroService {
         }
     }
 
-    public Carro park(Long id) {
+    public Carro entradaCarro(Long id) {
         Optional<Carro> carro = _carroRepository.findById(id);
 
         if (carro.isPresent()){
@@ -101,7 +113,7 @@ public class CarroServicesImpl implements CarroService {
         }
     }
 
-    public Carro depart(Long id) {
+    public Carro saidaCarro(Long id) {
         Optional<Carro> carro = _carroRepository.findById(id);
 
         if (carro.isPresent()){

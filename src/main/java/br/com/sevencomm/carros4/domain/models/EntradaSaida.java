@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class Registro {
+public class EntradaSaida {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +20,8 @@ public class Registro {
     @JoinColumn(name = "carroId")
     private Carro carro;
 
-    public Registro() {
+    public EntradaSaida() {
     }
-
-
 
     public Long getId() {
         return id;

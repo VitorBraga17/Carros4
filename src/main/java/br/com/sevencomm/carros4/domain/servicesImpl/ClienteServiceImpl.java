@@ -6,6 +6,7 @@ import br.com.sevencomm.carros4.domain.models.Cliente;
 import br.com.sevencomm.carros4.domain.services.ClienteService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,15 +19,23 @@ public class ClienteServiceImpl implements ClienteService {
         _clienteRepository = clienteRepository;
     }
 
-    public List<Cliente> listClientes() {
-        return _clienteRepository.findAll();
+    public List<ClienteDTO> listClientes() {
+        List<Cliente> clientes = _clienteRepository.findAll();
+        List<ClienteDTO> clientesDTO = new ArrayList<>();
+
+        for(Cliente c : clientes){
+            ClienteDTO clienteDTO = ClienteDTO.toDTO(c);
+            clientesDTO.add(clienteDTO);
+        }
+        return clientesDTO;
     }
 
-    public Cliente findClienteById(Long id) {
+    public ClienteDTO getClienteById(Long id) {
         Optional<Cliente> cliente = _clienteRepository.findById(id);
 
         if(cliente.isPresent()){
-            return cliente.get();
+            ClienteDTO clienteDTO = ClienteDTO.toDTO(cliente.get());
+            return clienteDTO;
         } else {
             throw new IllegalArgumentException("Cliente not found!");
         }
