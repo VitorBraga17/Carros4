@@ -49,6 +49,8 @@ public class ClienteServiceImpl implements ClienteService {
         }
 
         cliente.setNome(clienteDTO.getNome());
+        cliente.setEmail(clienteDTO.getEmail());
+        cliente.setTelefone(clienteDTO.getTelefone());
 
         return _clienteRepository.save(cliente);
     }
@@ -61,6 +63,8 @@ public class ClienteServiceImpl implements ClienteService {
             }
             Cliente updateCliente = cliente.get();
             updateCliente.setNome(clienteDTO.getNome());
+            updateCliente.setEmail(clienteDTO.getEmail());
+            updateCliente.setTelefone(clienteDTO.getTelefone());
             return _clienteRepository.save(updateCliente);
         }else {
             throw new IllegalArgumentException("Cliente not found!");
